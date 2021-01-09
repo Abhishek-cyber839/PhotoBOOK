@@ -1,32 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Nav/>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style lang="sass">
+@import "~bootstrap"
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-align: center
+  color: #2c3e50
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+
+.nav-link:hover
+  color: white
+
+form
+  width: 35%
+  background-color: #2c3e50
+  color: aliceblue
+  padding: 20px
+
+.form-wrap
+  display: flex
+  flex-direction: column
+  align-items: center
+
+
+</style>
+<script>
+import Nav from "@/components/Nav";
+import {mapActions} from 'vuex';
+
+export default {
+  mounted() {
+    this.authAction()
+  },
+  components: {Nav},
+  methods:{
+    ...mapActions({
+      authAction:'auth/authAction'
+    })
   }
 }
-</style>
+</script>

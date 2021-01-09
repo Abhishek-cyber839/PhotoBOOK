@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Albums from "@/views/Albums";
+import Album from "@/views/Album";
+import SignUp from "@/views/SIgnUp";
+import {Auth} from 'aws-amplify'
 
 Vue.use(VueRouter)
 
@@ -9,6 +13,23 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/album/:id',
+    name: 'Album',
+    component: Album,
+    meta:{requiresAuth:true} // needs authorization for this route.
+  },
+  {
+    path: '/albums',
+    name: 'Albums',
+    component: Albums,
+    meta:{requiresAuth:true} // needs authorization for this route.
   },
   {
     path: '/about',
@@ -22,6 +43,19 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = await Auth.currentUserInfo();
+
+  if (requiresAuth && !isAuthenticated) {
+    next("/");
+  } else {
+    next()
+  }
+
 })
 
 export default router
