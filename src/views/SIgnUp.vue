@@ -29,7 +29,7 @@
             id="password"
             v-model="password"
         >
-        <small class="form-text text-muted">Your password should be at least 8 characters long.</small>
+        <small class="form-text text-white">Your password should be at least 8 characters long.</small>
       </div>
       <button type="submit" class="btn btn-outline-info btn-dark">Sign Up</button>
       <p>Already have an account ?<router-link class="d-inline-block nav-link" to="/">Log In</router-link></p>
@@ -107,6 +107,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
+h1
+  font-size: 28px
 </style>
