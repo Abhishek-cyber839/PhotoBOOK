@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="m-3 font-semibold">Here's Your All Time Favourite Album</h1>
     <div>
-      <h1 class="text-4xl font-semibold">Album {{ albumName }}</h1>
+      <h5 class="font-semibold">Album {{ albumName }}</h5>
       <div class="flex w-full mt-10 items-center justify-center bg-grey-lighter">
         <form enctype="multipart/form-data" novalidate>
           <label
